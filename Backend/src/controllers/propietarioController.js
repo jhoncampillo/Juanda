@@ -11,6 +11,7 @@ class propietarioController {
 
   //metodo para crear porducto- se traja como funcion
   create = (req, res) => {
+    console.log("AQUI MA312123123123");
     //capturar datos del cuerpo de la peticion- ver que usuario sube producto
     let {
       nombre,
@@ -158,6 +159,7 @@ class propietarioController {
   };
   // get All
   getAll = (req, res) => {
+    console.log("hjijeputa");
     propietario.find((error, docs) => {
       if (error) {
         res.status(500).json({ error });

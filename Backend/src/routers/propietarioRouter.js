@@ -19,15 +19,27 @@ class propietarioRouter {
 
     //-------------------PONGO RUTAS PRIVADAS MIDELLWARE------
     //SE EJECUTA EN ORDEN DE UBICAXION- next es para que siga si cumple
-    this.router.use(tokenC.verifyAuth);
+    // this.router.use(tokenC.verifyAuth);
     //ruta crear Privada
-    this.router.post("/propietario", propietarioC.create);
+    this.router.post("/propietario", [tokenC.verifyAuth], propietarioC.create);
     //ruta de update
-    this.router.put("/propietario/:id", propietarioC.update);
+    this.router.put(
+      "/propietario/:id",
+      [tokenC.verifyAuth],
+      propietarioC.update
+    );
     //rutas del get
-    this.router.get("/propietario/:id", propietarioC.getByUser);
+    this.router.get(
+      "/propietario/:id",
+      [tokenC.verifyAuth],
+      propietarioC.getByUser
+    );
     //ruta delete
-    this.router.delete("/propietario/:id", propietarioC.delete);
+    this.router.delete(
+      "/propietario/:id",
+      [tokenC.verifyAuth],
+      propietarioC.delete
+    );
   }
 }
 module.exports = propietarioRouter;

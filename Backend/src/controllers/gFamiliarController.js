@@ -11,6 +11,7 @@ class gFamiliarController {
 
   //metodo para crear porducto- se traja como funcion
   create = (req, res) => {
+    console.log("AQUI MA312123123123");
     //capturar datos del cuerpo de la peticion- ver que usuario sube producto
     let { nombre, apellidos, cedula, parentesco, propietario } = req.body;
     //obtengo el token

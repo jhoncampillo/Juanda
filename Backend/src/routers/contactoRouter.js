@@ -1,8 +1,7 @@
 const { Router } = require("express");
-const contactoController = require("../controllers/contactoControllers");
-const TokenController = require("../controllers/tokenController");
+const ContactoController = require("../controllers/contactoControllers");
 
-class contactoRouter {
+class ContactoRouter {
   constructor() {
     this.router = Router();
     this.#config();
@@ -10,17 +9,8 @@ class contactoRouter {
   //#- crea ruta privada #config() y el this.#copnfig()
 
   #config() {
-    let tokenC = new TokenController();
-    //contruir objeto
-    const contactoC = new contactoController();
-    //configuro rutas
-    //ruta getAll-Publica
+    const contactoC = new ContactoController();
     this.router.get("/contacto", contactoC.getAll);
-
-    //-------------------PONGO RUTAS PRIVADAS MIDELLWARE------
-    //SE EJECUTA EN ORDEN DE UBICAXION- next es para que siga si cumple
-    this.router.use(tokenC.verifyAuth);
-    //ruta crear Privada
     this.router.post("/contacto", contactoC.create);
     //ruta de update
     this.router.put("/contacto/:id", contactoC.update);
@@ -29,5 +19,9 @@ class contactoRouter {
     //ruta delete
     this.router.delete("/contacto/:id", contactoC.delete);
   }
+
+  saluda() {
+    console.log("HOLA router");
+  }
 }
-module.exports = contactoRouter;
+module.exports = ContactoRouter;

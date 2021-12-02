@@ -44,7 +44,7 @@ class Server {
     const userR = new UserRouter();
     const propietarioRouter = new PropietarioRouter();
     const gfamiliarRouter = new Gfamiliar();
-    const contacto = new Contacto();
+    const contactoRouter = new Contacto();
     //------------ANNADE RUTAS A EXPRESS
     //anadira ruta a express
     this.app.use(router);
@@ -55,7 +55,7 @@ class Server {
     //annado ruta Gfamiliar
     this.app.use(gfamiliarRouter.router);
     //annado ruta Contacto
-    this.app.use(contacto.router);
+    this.app.use(contactoRouter.router);
     //pone el servidor a escuchar
     this.app.listen(this.app.get("PORT"), () => {
       console.log(

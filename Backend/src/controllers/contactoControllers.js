@@ -1,27 +1,17 @@
 //const Product = require("../modells/product");
-const jwt = require("jsonwebtoken");
-const TokenControler = require("./tokenController");
 const contacto = require("../modells/contacto");
 
-class contactoController {
+class ContactoController {
   //creo el contructoy el atributo token
   constructor() {
-    this.tokenC = new TokenControler();
+    // this.tokenC = new TokenControler();
   }
 
   //metodo para crear porducto- se traja como funcion
   create = (req, res) => {
+    console.log("AHOLASLALS");
     //capturar datos del cuerpo de la peticion- ver que usuario sube producto
     let { nombre, apellidos, correo, mensaje } = req.body;
-    //obtengo el token
-    let token = this.tokenC.getToken(req);
-    //let objProduct = req.body;
-    //obtener datos del token- split parte la cadena dinde hay un espacio-array
-    console.log(req.headers.authorization);
-
-    let decode = jwt.decode(token, process.env.JWT_PRIVATE_TOKEN);
-    console.log(decode);
-    //despues de capturado el token - creo el producto
     contacto.create(
       //{ name, price, url_img, user_id: decode.id },
       {
@@ -124,4 +114,4 @@ class contactoController {
     });
   };
 }
-module.exports = contactoController;
+module.exports = ContactoController;

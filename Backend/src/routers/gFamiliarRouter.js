@@ -19,15 +19,23 @@ class gfamiliarRouter {
 
     //-------------------PONGO RUTAS PRIVADAS MIDELLWARE------
     //SE EJECUTA EN ORDEN DE UBICAXION- next es para que siga si cumple
-    this.router.use(tokenC.verifyAuth);
+    // this.router.use(tokenC.verifyAuth);
     //ruta crear Privada
-    this.router.post("/gfamiliar", gfamiliarC.create);
+    this.router.post("/gfamiliar", [tokenC.verifyAuth], gfamiliarC.create);
     //ruta de update
-    this.router.put("/gfamiliar/:id", gfamiliarC.update);
+    this.router.put("/gfamiliar/:id", [tokenC.verifyAuth], gfamiliarC.update);
     //rutas del get
-    this.router.get("/gfamiliar/:id", gfamiliarC.getByUser);
+    this.router.get(
+      "/gfamiliar/:id",
+      [tokenC.verifyAuth],
+      gfamiliarC.getByUser
+    );
     //ruta delete
-    this.router.delete("/gfamiliar/:id", gfamiliarC.delete);
+    this.router.delete(
+      "/gfamiliar/:id",
+      [tokenC.verifyAuth],
+      gfamiliarC.delete
+    );
   }
 }
 module.exports = gfamiliarRouter;
